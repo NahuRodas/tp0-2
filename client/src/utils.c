@@ -30,10 +30,9 @@ int crear_conexion(char *ip, char* puerto)
 	// Ahora vamos a crear el socket.
 	int socket_cliente = getaddrinfo(ip, puerto, &hints, &server_info);
 	
-	int skt_conexion = socket(
-							server_info -> ai_family,
-							server_info -> ai_socktype,
-							server_info -> ai_protocol);
+	int skt_conexion = socket(server_info -> ai_family,
+							  server_info -> ai_socktype,
+							  server_info -> ai_protocol);
 
 	// Ahora que tenemos el socket, vamos a conectarlo
 

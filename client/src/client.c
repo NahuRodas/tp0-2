@@ -59,6 +59,8 @@ int main(void)
 	/*---------------------------------------------------PARTE 3-------------------------------------------------------------*/
 
 	// ADVERTENCIA: Antes de continuar, tenemos que asegurarnos que el servidor esté corriendo para poder conectarnos a él
+	
+	// iniciar_servidor(); ?????????????????????????
 
 	// Creamos una conexión hacia el servidor
 	conexion = crear_conexion(ip, puerto);
@@ -112,9 +114,10 @@ void leer_consola(t_log* logger)
 			break;
 		}
 		log_info(consoleLogger, leido);
+		free(leido);
 	}
 	
-
+	
 	// ¡No te olvides de liberar las lineas antes de regresar!
 	
 }
@@ -127,7 +130,21 @@ void paquete(int conexion)
 
 	// Leemos y esta vez agregamos las lineas al paquete
 
-
+while (1)
+	{
+		leido = readline("> ");
+		if (leido)
+		{
+			add_history(leido);
+		}
+		if (!strncmp(leido,"",4))
+		{
+			free(leido);
+			break;
+		}
+		agregar_a_paquete(paquete,leido,sizeof(leido));
+		free(leido);
+	}
 	// ¡No te olvides de liberar las líneas y el paquete antes de regresar!
 	
 }
